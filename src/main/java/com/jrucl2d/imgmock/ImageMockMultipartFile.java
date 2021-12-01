@@ -9,12 +9,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-public class ImgMockMultipartFile extends MockMultipartFile {
+public class ImageMockMultipartFile extends MockMultipartFile {
     private final int width;
     private final int height;
     private final String imageType;
 
-    private ImgMockMultipartFile(
+    private ImageMockMultipartFile(
         String name
         , String originalFilename
         , String contentType
@@ -41,7 +41,7 @@ public class ImgMockMultipartFile extends MockMultipartFile {
         return new ByteArrayInputStream(os.toByteArray());
     }
 
-    private static class Builder {
+    public static class Builder {
         private static final int MEGABYTE = 1_048_576;
 
         private String name = "test.png";
@@ -86,9 +86,9 @@ public class ImgMockMultipartFile extends MockMultipartFile {
             return this;
         }
 
-        public ImgMockMultipartFile build() {
+        public ImageMockMultipartFile build() {
             byte[] content = new byte[size];
-            return new ImgMockMultipartFile(
+            return new ImageMockMultipartFile(
                 name
                 , originalFilename
                 , "image/" + imageType
